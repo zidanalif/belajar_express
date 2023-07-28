@@ -1,4 +1,5 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
+import UserController from "./../controllers/user_controller";
 class UserRouter {
     public router: Router;
 
@@ -8,12 +9,8 @@ class UserRouter {
     }
 
     routes(): void {
-        this.router.get('/', (req: Request, res: Response) => {
-            res.send('Ini index route user');
-        })
-        this.router.post('/', (req: Request, res: Response) => {
-            res.send({ message: 'Anda post dengan data', data: req.body });
-        })
+        this.router.get('/', UserController.index)
+        this.router.post('/', UserController.create)
     }
 }
 
