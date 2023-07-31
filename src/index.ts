@@ -5,6 +5,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import userRouter from "./routers/user_router";
 import { authMiddelware } from "./middlewares/auth_middleware";
+import dotenv from "dotenv";
 
 class App {
     public app: Application;
@@ -12,6 +13,7 @@ class App {
         this.app = express();
         this.plugins();
         this.routes();
+        dotenv.config();
     }
 
     protected plugins(): void {
