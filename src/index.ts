@@ -4,6 +4,7 @@ import compression from 'compression';
 import cors from 'cors';
 import helmet from 'helmet';
 import userRouter from "./routers/user_router";
+import { authMiddelware } from "./middlewares/auth_middleware";
 
 class App {
     public app: Application;
@@ -23,7 +24,7 @@ class App {
 
     protected routes(): void {
         this.app.route('/').get((req: Request, res: Response) => res.send({ message: 'Success' }));
-        this.app.use('/users', userRouter);
+        this.app.use('/users', authMiddelware, userRouter);
     }
 }
 
