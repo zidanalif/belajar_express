@@ -6,14 +6,18 @@ import helmet from 'helmet';
 import userRouter from "./routers/user_router";
 import { authMiddelware } from "./middlewares/auth_middleware";
 import dotenv from "dotenv";
+import { PrismaClient } from '@prisma/client'
 
 class App {
     public app: Application;
+    public prisma: PrismaClient;
+
     constructor() {
         this.app = express();
         this.plugins();
         this.routes();
         dotenv.config();
+        this.prisma = new PrismaClient();
     }
 
     protected plugins(): void {
